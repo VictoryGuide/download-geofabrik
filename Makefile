@@ -7,7 +7,6 @@ arm6:
 	cp geofabrik.yml LICENSE README.md arm6/
 	GOOS=linux GOARCH=arm6 go build -o arm6/download-geofabrik
 
-
 darwin32:
 	mkdir darwin32
 	cp geofabrik.yml LICENSE README.md darwin32/
