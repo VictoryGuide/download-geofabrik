@@ -3,7 +3,7 @@ clean:
 	rm -rf darwin32 darwin64 linux32 linux64 win32 win64 *.zip
 
 arm6:
-  mkdir arm6
+	mkdir arm6
 	cp geofabrik.yml LICENSE README.md arm6/
 	GOOS=linux GOARCH=arm6 go build -o arm6/download-geofabrik
 
