@@ -2,6 +2,12 @@ clean:
 	go clean
 	rm -rf darwin32 darwin64 linux32 linux64 win32 win64 *.zip
 
+arm6:
+  mkdir arm6
+	cp geofabrik.yml LICENSE README.md arm6/
+	GOOS=linux GOARCH=arm6 go build -o arm6/download-geofabrik
+
+
 darwin32:
 	mkdir darwin32
 	cp geofabrik.yml LICENSE README.md darwin32/
@@ -32,6 +38,10 @@ win64:
 	cp geofabrik.yml LICENSE README.md win64/
 	GOOS=windows GOARCH=amd64 go build -o win64/download-geofabrik.exe
 
+package-arm6: arm6
+	cd arm6 && zip -9 download-geofabrik-arm6.zip download-geofabrik geofabrik.yml LICENSE README.md
+	mv arm6/download-geofabrik-arm6.zip ./
+
 package-darwin32: darwin32
 	cd darwin32 && zip -9 download-geofabrik-darwin32.zip download-geofabrik geofabrik.yml LICENSE README.md
 	mv darwin32/download-geofabrik-darwin32.zip ./
@@ -56,4 +66,4 @@ package-win64: win64
 	cd win64 && zip -9 download-geofabrik-win64.zip download-geofabrik.exe geofabrik.yml LICENSE README.md
 	mv win64/download-geofabrik-win64.zip ./
 
-all: package-darwin32 package-darwin64 package-linux32 package-linux64 package-win32 package-win64
+all: package-darwin32 package-darwin64 package-linux32 package-linux64 package-win32 package-win64 package-arm6
